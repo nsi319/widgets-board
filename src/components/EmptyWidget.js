@@ -11,6 +11,7 @@ const EmptyWidget = () => {
                 y: 0,
                 width: 320,
                 height: 200,
+                
             }}
         >
             Rnd
