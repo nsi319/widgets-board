@@ -11,6 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import EmptyWidget from './EmptyWidget';
+import StopWatchWidget from './StopWatch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +42,7 @@ export default function MenuAppBar() {
   };
 
   return (
+    <>
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
@@ -78,5 +81,9 @@ export default function MenuAppBar() {
         </Toolbar>
       </AppBar>
     </div>
+    <div className="widget-holder">
+      <StopWatchWidget/>
+    </div>
+    </>
   );
 }
