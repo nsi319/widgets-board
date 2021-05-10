@@ -12,7 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import EmptyWidget from './EmptyWidget';
-import StopWatchWidget from './StopWatch';
+import StopWatchWidget from './StopWatchWidget';
 
 const useStyles = makeStyles((theme) => ({
   root: {
