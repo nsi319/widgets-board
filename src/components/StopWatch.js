@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
     },
-  }
+  },
 }));
 
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const StopWatch = () => {
     const classes = useStyles();
 
-    const {handlePause,handleReset,handleResume,handleStart,timer} = useTimer(0);
+    const {handlePause,handleReset,handleResume,handleStart,timer,isPaused,isActive} = useTimer(0);
 
     const formatTime = () => {
         const getSeconds = `0${(timer % 60)}`.slice(-2)
@@ -38,10 +38,10 @@ const StopWatch = () => {
             <Typography variant="body1"> 
                 {formatTime()}
             </Typography>
-            <ButtonGroup color="primary" size="small">
-                <Button onClick={handleStart}>Start</Button>
-                <Button onClick={handlePause}>Pause</Button>
-                <Button onClick={handleResume}>Resume</Button>
+            <ButtonGroup size="small" variant="contained">
+                <Button onClick={handleStart} disabled={isPaused || isActive}>Start</Button>
+                <Button onClick={handlePause} disabled={!isPaused}>Pause</Button>
+                <Button onClick={handleResume} disabled={isPaused}>Resume</Button>
                 <Button onClick={handleReset}>Reset</Button>
             </ButtonGroup>
         </div>

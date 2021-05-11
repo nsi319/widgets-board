@@ -45,16 +45,24 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
     width: "100%",
-    height:"100%"
+    height:"100%",
+    color:"white",
   },
 }));
 
 const style = {
     border: "solid 1px #ddd",
-    background: "#f0f0f0"
 };
+
+const mainstyle = {
+  background: "linear-gradient(360deg, #654ea3, #eaafc8)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  boxShadow: "box-shadow: 0px 8px 38px -8px rgba(0,0,0,0.75)", //"5px 5px 10px #ccc",
+  fontWeight: 300,
+  color:"white",
+  borderRadius: "1rem"
+  
+}
 
 export default function StopWatchWidget() {
   const classes = useStyles();
@@ -68,7 +76,7 @@ export default function StopWatchWidget() {
 
   return (
     <Rnd
-    style = {style}
+    style = {mainstyle}
     default={{
         x: 0,
         y: 0,
@@ -78,9 +86,9 @@ export default function StopWatchWidget() {
     }}
     dragHandleClassName="handle"
     >
-    <Box>
+    <Box className={classes.root}>
     <div className='handle'>
-        handle
+      Timer
     </div>
     <div className={classes.root}>
       <AppBar position="static" color="default">
