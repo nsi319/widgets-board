@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
+import { Add } from '@material-ui/icons'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -14,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import EmptyWidget from './EmptyWidget';
 import StopWatchWidget from './StopWatchWidget';
+import CalculatorWidget from './Calculator';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +44,19 @@ export default function MenuAppBar({onToggleDark}) {
     setAnchorEl(null);
   };
 
+  let [list,setList] = useState([]);
+  const handleWidget = (prop) => {
+    console.log(prop.target.firstChild.data);
+    let widget = prop.target.firstChild.data;
+    console.log(widget);
+    if(widget=="calculator"){
+      setList((list) => [...list,<CalculatorWidget/>]);
+    }
+    else if(widget=="Timer"){
+      setList((list) => [...list,<StopWatchWidget/>]);
+    }
+  }
+
   return (
     <>
     <div className={classes.root}>
@@ -58,7 +73,7 @@ export default function MenuAppBar({onToggleDark}) {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <Add />
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -75,20 +90,17 @@ export default function MenuAppBar({onToggleDark}) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem>
-                  <Button variant="contained" color="default" onClick={onToggleDark}>
-                    Toggle Theme Type
-                  </Button>
+                <MenuItem onClick={handleWidget}>
+                  calculator
                 </MenuItem>
+                <MenuItem onClick={handleWidget}>Timer</MenuItem>
               </Menu>
             </div>
         </Toolbar>
       </AppBar>
     </div>
-    <div className="widget-holder">
-      <StopWatchWidget/>
+    <div id="widget-holder">
+     {list.map((item) => item)}
     </div>
     </>
   );

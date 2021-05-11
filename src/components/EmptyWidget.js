@@ -35,7 +35,7 @@ const EmptyWidget = () => {
                 <div className='handle'>
                     handle
                 </div>
-                <p> rnd</p>
+                Rnd
             </Box>
         </Rnd>
     );
